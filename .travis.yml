@@ -1,0 +1,59 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+matrix:
+    allow_failures:
+        - php: 5.5
+
+before_script:
+    - "ulimit -n 10000"
+    - "sudo apt-get install -y wkhtmltopdf"
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+#   - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+#   - sudo apt-get update > /dev/null
+#   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+#   - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+#   - sudo sed -i -e "/DocumentRoot/i\ServerName sylius.local" /etc/apache2/sites-available/default
+#   - echo "127.0.0.1 sylius.local" | sudo tee -a /etc/hosts
+#   - sudo /etc/init.d/apache2 restart
+    - composer self-update
+    - composer install --dev --prefer-source --no-interaction > /dev/null
+    - app/console doctrine:database:create --env=test > /dev/null
+    - app/console doctrine:schema:create --env=test > /dev/null
+    - chmod -R 777 app/cache app/logs
+    - app/console cache:warmup --env=test > /dev/null
+    - chmod -R 777 app/cache app/logs
+#   - "sh -e /etc/init.d/xvfb start"
+#   - "export DISPLAY=:99.0"
+#   - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar"
+#   - "java -jar selenium-server-standalone-2.31.0.jar > /dev/null &"
+#   - sleep 5
+
+script:
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@cart'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@taxation'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@shipping'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@addressing'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@promotions'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@inventory'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@taxonomies'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@settings'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@payments'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@currencies'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@account'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@checkout'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@homepage'
+    - php -d memory_limit=4096M bin/behat --no-snippets --no-paths --verbose --tags '@products'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@users'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@dashboard'
+    - php -d memory_limit=2048M bin/behat --no-snippets --no-paths --verbose --tags '@orders'
+    - cd src/Sylius/Bundle/CoreBundle; ../../../../bin/phpspec run -fpretty --verbose
+
+notifications:
+  email: "travis-ci@sylius.org"
+  irc:   "irc.freenode.org#sylius-dev"

@@ -1,0 +1,40 @@
+{
+    "name": "sylius/web-bundle",
+    "type": "symfony-bundle",
+    "description": "Sylius store web bundle.",
+    "keywords": ["shop", "ecommerce", "store", "webshop", "sylius"],
+    "homepage": "http://sylius.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Jędrzejewski",
+            "homepage": "http://pjedrzejewski.com"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/Sylius/SyliusWebBundle/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":                       ">=5.3.3",
+
+        "symfony/framework-bundle":  "~2.3",
+        "sylius/core-bundle":        "0.2.*",
+        "knplabs/knp-menu-bundle":   "2.0.*",
+        "liip/imagine-bundle":       "0.9.*",
+        "knplabs/knp-snappy-bundle": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": { "Sylius\\Bundle\\WebBundle": "" }
+    },
+    "target-dir": "Sylius/Bundle/WebBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.2.x-dev"
+        }
+    }
+}
