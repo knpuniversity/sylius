@@ -93,4 +93,16 @@ class ProductRepository extends VariableProductRepository
     {
         return $this->findBy(array(), array('createdAt' => 'desc'), $limit);
     }
+
+    /**
+     * Find X most popular products.
+     *
+     * @param integer $limit
+     *
+     * @return ProductInterface[]
+     */
+    public function findPopular($limit = 10)
+    {
+        return $this->findBy(array(), array('views' => 'desc'), $limit);
+    }
 }

@@ -7,6 +7,7 @@
 
     <mapped-superclass name="Sylius\Bundle\CoreBundle\Model\Product" table="sylius_product">
         <field name="shortDescription" column="short_description" type="string" nullable="true" />
+        <field name="views" type="integer" />
         <field name="variantSelectionMethod" column="variant_selection_method" type="string" nullable="false" />
 
         <many-to-one field="taxCategory" target-entity="Sylius\Bundle\TaxationBundle\Model\TaxCategoryInterface">

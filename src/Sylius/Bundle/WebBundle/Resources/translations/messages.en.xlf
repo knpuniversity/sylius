@@ -598,6 +598,10 @@
         <source>sylius.newest</source>
         <target>Newest products</target>
       </trans-unit>
+      <trans-unit id="0a451a1d191ef88eb8652565ad75d764" resname="sylius.popular">
+        <source>sylius.popular</source>
+        <target>Popular products</target>
+      </trans-unit>
       <trans-unit id="6f4e66d4340c27b792d3e5a353127d3e" resname="sylius.no">
         <source>sylius.no</source>
         <target>no</target>

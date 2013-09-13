@@ -55,6 +55,28 @@ class ProductController extends ResourceController
         ));
     }
 
+    public function showAction()
+    {
+        $product = $this->findOr404();
+        $config = $this->getConfiguration();
+
+
+        if (!$this->get('security.context')->isGranted('ROLE_SYLIUS_ADMIN')) {
+            $this->update(
+                $product->incrementViews()
+            );
+        }
+
+        $view =  $this
+            ->view()
+            ->setTemplate($config->getTemplate('show.html'))
+            ->setTemplateVar($config->getResourceName())
+            ->setData($product)
+        ;
+
+        return $this->handleView($view);
+    }
+
     /**
      * Render product filter form.
      *

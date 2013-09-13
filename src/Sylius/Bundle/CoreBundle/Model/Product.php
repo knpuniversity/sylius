@@ -51,6 +51,13 @@ class Product extends BaseProduct implements ProductInterface
     protected $variantSelectionMethod;
 
     /**
+     * Number of views.
+     *
+     * @var int
+     */
+    protected $views;
+
+    /**
      * Taxons.
      *
      * @var Collection
@@ -78,6 +85,7 @@ class Product extends BaseProduct implements ProductInterface
     {
         parent::__construct();
 
+        $this->views = 0;
         $this->setMasterVariant(new Variant());
         $this->taxons = new ArrayCollection();
 
@@ -192,6 +200,23 @@ class Product extends BaseProduct implements ProductInterface
         $this->shortDescription = $shortDescription;
 
         return $this;
+    }
+
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    public function setViews($views)
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    public function incrementViews($increment = 1)
+    {
+        return $this->setViews($this->getViews() + $increment);
     }
 
     /**
