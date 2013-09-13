@@ -528,11 +528,11 @@
       </trans-unit>
       <trans-unit id="ce71111cec2ffc480f4a947e170afa33" resname="sylius.homepage.splash.headline">
         <source>sylius.homepage.splash.headline</source>
-        <target>Welcome to Sylius</target>
+        <target>Welcome to KNP Costumes</target>
       </trans-unit>
       <trans-unit id="7dc36308d46da1a1c2e960086c211e74" resname="sylius.homepage.splash.subheadline">
         <source>sylius.homepage.splash.subheadline</source>
-        <target>Modern ecommerce for Symfony2</target>
+        <target>Costumes for Kids and Adults</target>
       </trans-unit>
       <trans-unit id="8de175cf2475c0970e1c6a43c68d90e9" resname="sylius.inventory_unit.created_at">
         <source>sylius.inventory_unit.created_at</source>
@@ -572,7 +572,7 @@
       </trans-unit>
       <trans-unit id="0d2f8b16705b1d604ce78637fb0e87ab" resname="sylius.logo">
         <source>sylius.logo</source>
-        <target>Sylius</target>
+        <target>KNP Costumes</target>
       </trans-unit>
       <trans-unit id="3a3a6fc29d7eaa3e9cf3b3f4b6337939" resname="sylius.manage">
         <source>sylius.manage</source>
